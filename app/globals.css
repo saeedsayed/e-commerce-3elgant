@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --font-primary: "Poppins", sans-serif;
+    --font-secondary: "Inter", sans-serif;
+    --primary-color: #f3f5f7;
+    --text-color: #141718;
+    --second-text-color: #ffffff;
+    --sub-text-color: #6c7275;
+    --sub-second-text-color: #6c7275;
+    --badge-color: #38cb89;
+  }
