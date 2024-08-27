@@ -1,12 +1,12 @@
-import MainLoading from '@/components/common/MainLoading'
-import React from 'react'
+import { MainLoading } from "@/components/common";
+import React from "react";
 
 const loading = () => {
   return (
-    <div>
-    <MainLoading/>
-    </div>
-  )
-}
+    <>
+      <MainLoading />
+    </>
+  );
+};
 
-export default loading
+export default loading;

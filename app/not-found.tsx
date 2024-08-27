@@ -36,10 +36,10 @@ const notFound = (props: Props) => {
                   </svg>
                   <span>Go back</span>
                 </button>
-                <button className="w-1/2 text-sm shrink-0 sm:w-auto">
+                <Button className="w-1/2 text-sm shrink-0 sm:w-auto">
                   <link href="/" />
                   Take me home
-                </button>
+                </Button>
               </div>
             </div>
             <div className="grid w-full max-w-6xl grid-cols-1 gap-8 mx-auto mt-8 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,7 +1,9 @@
-import React from 'react'
-import PagesTitle from "@/components/profilePageComponents/PagesTitle"
-import OrdersTable from '@/components/profilePageComponents/OrdersTable'
-import OrderTableForSmallDevices from '@/components/profilePageComponents/OrderTableForSmallDevices';
+import React from "react";
+import {
+  PagesTitle,
+  OrdersTable,
+  OrderTableForSmallDevices,
+} from "@/components/profilePageComponents";
 
 const TABLE_DATA = {
   header: ["Number ID", "Dates", "Status", "Price"],
@@ -43,10 +45,10 @@ const Orders = () => {
   return (
     <div>
       <PagesTitle>Orders History</PagesTitle>
-      <OrdersTable data={TABLE_DATA}/>
-      <OrderTableForSmallDevices data={TABLE_DATA}/>
+      <OrdersTable data={TABLE_DATA} />
+      <OrderTableForSmallDevices data={TABLE_DATA} />
     </div>
-  )
-}
+  );
+};
 
-export default Orders
+export default Orders;

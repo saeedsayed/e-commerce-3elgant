@@ -5,7 +5,7 @@ import { IoCameraOutline } from "react-icons/io5";
 import { PROFILE_LINKS } from "@/constants/index";
 import Image from "next/image";
 import { Button } from "../common";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import type { User } from "next-auth";
 
 type Props = {

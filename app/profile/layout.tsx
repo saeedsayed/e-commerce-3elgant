@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import ProfileNav from "@/components/profilePageComponents/ProfileNav";
+import { ProfileNav } from "@/components/profilePageComponents";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
@@ -9,8 +9,8 @@ interface Props {
 }
 
 export const metadata: Metadata = {
-  title:'Profile'
-}
+  title: "Profile",
+};
 
 const Profile = async ({ children }: Props) => {
   const session = await auth();
@@ -23,7 +23,7 @@ const Profile = async ({ children }: Props) => {
         My Account
       </h2>
       <div className="flex flex-col sm:flex-row gap-10 sm:gap-20 pb-20">
-        <ProfileNav user={session?.user}/>
+        <ProfileNav user={session?.user} />
         <div className="flex-1">{children}</div>
       </div>
     </div>

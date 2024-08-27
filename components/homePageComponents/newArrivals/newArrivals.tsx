@@ -1,4 +1,3 @@
-import React from "react";
 import NewArrivalsSlide from "./NewArrivalsSlide";
 import ArrowLink from "@/components/common/ArrowLink";
 

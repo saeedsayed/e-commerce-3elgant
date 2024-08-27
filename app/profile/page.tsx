@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Input } from "@/components/common";
-import PagesTitle from "@/components/profilePageComponents/PagesTitle";
+import { PagesTitle } from "@/components/profilePageComponents";
 import { auth } from "@/auth";
 
 const AccountDetails = async () => {

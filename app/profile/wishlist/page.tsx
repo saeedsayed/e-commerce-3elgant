@@ -1,13 +1,15 @@
 import React from "react";
-import PagesTitle from "@/components/profilePageComponents/PagesTitle";
-import WishlistTable from "@/components/profilePageComponents/WishlistTable";
-import SmallDevicesWishlistTable from "@/components/profilePageComponents/SmallDevicesWishlistTable";
+import {
+  PagesTitle,
+  WishlistTable,
+  SmallDevicesWishlistTable,
+} from "@/components/profilePageComponents";
 const Wishlist = async () => {
   return (
     <div>
       <PagesTitle>your Wishlist</PagesTitle>
-        <WishlistTable />
-        <SmallDevicesWishlistTable />
+      <WishlistTable />
+      <SmallDevicesWishlistTable />
     </div>
   );
 };

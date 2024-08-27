@@ -1,18 +1,15 @@
-import React from 'react'
-import Link from 'next/link'
-import Logo from '../common/Logo'
+import React from "react";
+import Link from "next/link";
+import { Logo } from "../common";
 
 const NavLogo = () => {
   return (
     <div className="logo">
-    <Link 
-    href="/" 
-    className="font-medium sm:text-2xl"
-    >
-      <Logo/>
-    </Link>
-  </div>
-  )
-}
+      <Link href="/" className="font-medium sm:text-2xl">
+        <Logo />
+      </Link>
+    </div>
+  );
+};
 
-export default NavLogo
+export default NavLogo;

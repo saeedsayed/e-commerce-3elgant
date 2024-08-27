@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import ButtonProvider from "@/components/authFormComponents/ButtonProvider";
-import Logo from "@/components/common/Logo";
+import { ButtonProvider } from "@/components/authFormComponents";
+import { Logo } from "@/components/common";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";

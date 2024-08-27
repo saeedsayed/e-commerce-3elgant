@@ -1,19 +1,25 @@
 "use client";
-import WishlistItem from "./WishlistItem";
+import { WishlistItem } from "./";
 import { Button } from "@/components/common";
 import { IoClose } from "react-icons/io5";
 import { discountCalc } from "@/lib/discountCalc";
 import Link from "next/link";
 import { useShopContext } from "@/context/ShopContext";
-import SkeletonLoading from "../common/SkeletonLoading";
+import { SkeletonLoading } from "../common";
 
 const WishlistTable = () => {
-  const { handleWishlist, wishlist, wishlistStatus, addToCart } = useShopContext();
+  const { handleWishlist, wishlist, wishlistStatus, addToCart } =
+    useShopContext();
   return (
     <>
       {wishlistStatus === "loading" && <SkeletonLoading />}
       {wishlistStatus === "empty" && (
-        <p className="text-text text-center">No product in your wishlist <Link href="/shop" className="text-badge hover:underline">Shop now</Link></p>
+        <p className="text-text text-center">
+          No product in your wishlist{" "}
+          <Link href="/shop" className="text-badge hover:underline">
+            Shop now
+          </Link>
+        </p>
       )}
       {wishlistStatus === "done" && (
         <div className="overflow-x-auto hidden md:block">
@@ -65,7 +71,9 @@ const WishlistTable = () => {
                     </div>
                   </td>
                   <td className="whitespace-nowrap text-text text-sm py-6 font-normal">
-                    <Button onClick={() => addToCart(item.id, 1, 'any')}>Add To Cart</Button>
+                    <Button onClick={() => addToCart(item.id, 1, "any")}>
+                      Add To Cart
+                    </Button>
                   </td>
                 </tr>
               ))}

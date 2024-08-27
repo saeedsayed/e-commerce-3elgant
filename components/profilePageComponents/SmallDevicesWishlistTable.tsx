@@ -1,5 +1,5 @@
 "use client";
-import WishlistItem from "./WishlistItem";
+import { WishlistItem } from "./";
 import Link from "next/link";
 import { Button } from "../common";
 import { useShopContext } from "@/context/ShopContext";

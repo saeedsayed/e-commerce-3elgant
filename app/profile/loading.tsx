@@ -1,10 +1,8 @@
-import SkeletonLoading from '@/components/common/SkeletonLoading'
-import React from 'react'
+import { SkeletonLoading } from "@/components/common";
+import React from "react";
 
 const loading = () => {
-  return (
-    <SkeletonLoading/>
-  )
-}
+  return <SkeletonLoading />;
+};
 
-export default loading
+export default loading;
