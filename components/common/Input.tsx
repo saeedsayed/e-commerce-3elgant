@@ -11,7 +11,7 @@ interface IInputProps {
   required?: boolean;
 }
 
-const Input = ({ label, id, type, err, errMes, required, ...rest }: IInputProps) => {
+const Input = ({ label, id, type, err, errMes, required, ...rest }: IInputProps & React.InputHTMLAttributes<HTMLInputElement>) => {
     const [isShow, setIsShow] = useState(false);
     return (
       <div className="relative flex-1 [&:has(:disabled)]:opacity-40">

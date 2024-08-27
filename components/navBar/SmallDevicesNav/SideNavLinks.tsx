@@ -1,5 +1,5 @@
 import React from "react";
-import { LINKS } from "@/constants/index";
+import { MAIN_NAV_LINKS } from "@/constants/index";
 import Link  from "next/link";
 
 interface ISideNavLinksProps {
@@ -10,7 +10,7 @@ const SideNavLinks = ({ handleClose }: ISideNavLinksProps) => {
   return (
     <nav>
       <ul className="flex flex-col font-medium">
-        {LINKS.map((link) => (
+        {MAIN_NAV_LINKS.map((link) => (
           <li key={link.name}>
             <Link
               href={link.path}

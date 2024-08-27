@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Logo from '../common/Logo'
 
 const NavLogo = () => {
   return (
@@ -8,7 +9,7 @@ const NavLogo = () => {
     href="/" 
     className="font-medium sm:text-2xl"
     >
-      3elegant.
+      <Logo/>
     </Link>
   </div>
   )

@@ -7,10 +7,13 @@ import { FaBars } from "react-icons/fa";
 import NavLogo from "../NavLogo";
 import SideMenu from "./SideMenu";
 import FlyoutCart from "../../flyoutCart/FlyoutCart";
+import { useShopContext } from "@/context/ShopContext";
 
 const SmallDeviceNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showFlyout, setShowFlyout] = useState(false);
+  const {cart} = useShopContext()
+  const cartItemCount = cart.length
   const handleShowMenu = () => {
     setShowMenu((p) => !p);
   };
@@ -31,7 +34,7 @@ const SmallDeviceNav = () => {
       >
         <PiShoppingBagLight className="w-6 h-6" />
         <span className="flex items-center justify-center text-xs text-white w-5 h-5 bg-text rounded-full">
-          2
+          {cartItemCount}
         </span>
       </div>
       <SideMenu showMenu={showMenu} setShowMenu={handleShowMenu} />

@@ -1,4 +1,3 @@
-import React from "react";
 // components
 import OfferBar from "./OfferBar";
 import NavLinks from "./NavLinks";
@@ -10,11 +9,11 @@ const NavBar = () => {
   return (
     <>
       <OfferBar />
-      <div className="container px-8 sm:px-0">
+      <div className="container">
         <header className="hidden sm:block">
           <div className="flex items-center justify-between py-4">
             <NavLogo />
-            <NavLinks/>
+            <NavLinks />
             <NavIcons />
           </div>
         </header>

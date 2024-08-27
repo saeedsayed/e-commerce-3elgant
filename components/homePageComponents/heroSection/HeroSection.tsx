@@ -1,21 +1,5 @@
 import React from "react";
 import HeroSlide from "./HeroSlide";
-import HeroCard from "./HeroCard";
-
-const cardData = [
-  {
-    title:'LivingRom',
-    thumbnail: "/images/hero_card_1.png",
-  },
-  {
-    title:'Bedroom',
-    thumbnail: "/images/hero_card_2.png",
-  },
-{
-  title:'Kitchen',
-  thumbnail: "/images/hero_card_3.png",
-}
-]
 
 const HeroSection = () => {
   return (
@@ -30,13 +14,6 @@ const HeroSection = () => {
           <span className="text-text">3legant</span> is a gift & decorations
           store based in HCMC, Vietnam. Est since 2019.
         </p>
-      </div>
-      <div className="flex gap-6 flex-col sm:flex-row">
-        <HeroCard size="lg" data={cardData[0]} />
-        <div className="flex flex-col flex-1 gap-6">
-          <HeroCard size="sm" data={cardData[1]} />
-          <HeroCard size="sm" data={cardData[2]} />
-        </div>
       </div>
     </div>
   );

@@ -1,26 +1,15 @@
 import React from 'react'
-// icons
-import { FaInstagram } from "react-icons/fa";
-import { RiFacebookCircleLine } from "react-icons/ri";
-import { FiYoutube } from "react-icons/fi";
-import Link from 'next/link';
-import { BsPerson } from 'react-icons/bs';
+import { SOCIAL_LINKS } from '@/constants';
 
 const SocialLinks = () => {
   return (
     <div className='flex gap-6'>
-        <a href="#">
-            <FaInstagram className="w-6 h-6" />
+      {SOCIAL_LINKS.map(({name, path, icon: Icon}) => (
+        
+        <a href="#" title={name} key={name}>
+            <Icon className="w-6 h-6" />
         </a>
-        <a href="#">
-            <RiFacebookCircleLine className="w-6 h-6" />
-        </a>
-        <a href="#">
-            <FiYoutube className="w-6 h-6" />
-        </a>
-        <Link href={"/profile"}>
-        <BsPerson className="w-6 h-6" />
-      </Link>
+      ))}
     </div>
   )
 }

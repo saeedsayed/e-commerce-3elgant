@@ -1,14 +1,21 @@
 import React from "react";
 import { Button, Input } from "@/components/common";
 import PagesTitle from "@/components/profilePageComponents/PagesTitle";
+import { auth } from "@/auth";
 
-const AccountDetails = () => {
+const AccountDetails = async () => {
+  const session = await auth();
   return (
     <div>
       <PagesTitle>Account Details</PagesTitle>
       <form action="">
         <div className="flex flex-col gap-6">
-          <Input label="First Name" id="firstName" required />
+          <Input
+            label="First Name"
+            id="firstName"
+            required
+            // value={session?.user?.firstName as string}
+          />
           <Input label="Last Name" id="lastName" required />
           <div>
             <Input label="Display Name" id="displayName" required />
