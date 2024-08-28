@@ -1,6 +1,6 @@
 import {
   HeroSection,
-  NewArrivals,
+  // NewArrivals,
   OurFeatures,
   Banner,
   Articles,
@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       <HeroSection />
       <Categories />
-      <NewArrivals />
+      {/* <NewArrivals /> */}
       <OurFeatures />
       <Banner />
       <Articles />
