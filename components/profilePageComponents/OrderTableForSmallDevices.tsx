@@ -1,36 +1,33 @@
+import { Order } from "@/types/order";
+import Link from "next/link";
 import React from "react";
 
 interface Props {
-  data: {
-    header: string[];
-    body: {
-        id: number;
-        dates: string;
-        status: string;
-        price: number;
-    }[];
-}
+  data: Order[]
 }
 
-const OrderTableForSmallDevices = ({ data }:Props) => {
+const OrderTableForSmallDevices = ({ data }: Props) => {
+  const header = ["Number ID", "Dates", "Status", "Price"]
   return (
     <div className="md:hidden">
-      {data.body.map((item) => (
-        <div key={item.id} className="border-b border-b-[#E8ECEF] mb-4">
-          {data.header.map((header) => (
-            <div
-              key={header}
-              className="text-sm font-medium text-text flex justify-between mb-4"
-            >
-              <p className="flex-1 text-sub-text">{header}</p>{" "}
-              <p className="flex-1">
-                {" "}
-                {header === "Price" ? "$" : ""}
-                {item[header.toLowerCase() as keyof typeof item] || item.id}
-              </p>
-            </div>
-          ))}
-        </div>
+      {data.map((item) => (
+        <Link href={`/orders/${item.id}`} key={item.id}
+          className="text-sm font-medium flex justify-between mb-4 pb-4 border-b border-b-[#E8ECEF]"
+        >
+          <div className="flex flex-col gap-3">
+            {header.map((header) => (
+              <p className="flex-1 text-sub-text" key={header}>{header}</p>
+            ))}
+          </div>
+          <div className="flex flex-col gap-3">
+            <p className="">#{item.id}</p>
+            <p className="text-text">
+              {item.attributes.createdAt.slice(0, 10)}
+            </p>
+            <p className="text-text">{item.attributes.status}</p>
+            <p className="text-text">${item.attributes.total}</p>
+          </div>
+        </Link>
       ))}
     </div>
   );

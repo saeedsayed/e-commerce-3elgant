@@ -2,12 +2,13 @@
 import { WishlistItem } from "./";
 import Link from "next/link";
 import { Button } from "../common";
-import { useShopContext } from "@/context/ShopContext";
 import { IoClose } from "react-icons/io5";
+import { useWishlistContext } from "@/context/WishlistContext";
+import { useCartContext } from "@/context/CartContext";
 
 const SmallDevicesWishlistTable = () => {
-  const { handleWishlist, wishlist, wishlistStatus, addToCart } =
-    useShopContext();
+  const { handleWishlist, wishlist, wishlistStatus } = useWishlistContext();
+  const { addToCart } = useCartContext()
   return (
     <>
       {wishlistStatus === "done" && (

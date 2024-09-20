@@ -4,7 +4,6 @@ import { getData } from "@/lib/getAPI";
 
 const Categories = async () => {
   const [error, cardData] = await getData("categories", ["thumbnail"]);
-
   return (
     <div className="flex gap-6 flex-col sm:flex-row container">
       {error ? (

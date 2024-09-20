@@ -17,8 +17,8 @@ const CategoryCard = ({ size, data }: IProps) => {
       } flex-1 bg-primary p-8 md:p-12`}
     >
       <div>
-        <h3 className="text-2xl md:text-[34px] mb-3">{category.name}</h3>
-        <ArrowLink href={`/shop?category=${category.name}`}>Shop Now</ArrowLink>
+        <h3 className="text-2xl md:text-[34px] mb-3">{category?.name}</h3>
+        <ArrowLink href={`/shop?category=${category?.name}`}>Shop Now</ArrowLink>
       </div>
       <div
         className={`min-w-[100px] w-full relative ${

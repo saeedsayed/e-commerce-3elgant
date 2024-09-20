@@ -4,10 +4,21 @@ export const putApi = async (
     endPoint: string,
     body: any,
     populate?: string[],
+    filters?: {
+        field: string;
+        operator: string;
+        value: any;
+    }[],
 ): Promise<[string | null, any]> => {
     let error: string | null = null;
     let response: any = null;
-    const apiUrl = `${baseUrl}${endPoint}?${populate?.map(p => `populate=${p}&`).join('')}`;
+    const filter = !!filters
+    ? filters.map(
+        ({ field, operator, value }) =>
+            `filters${field}[$${operator}]=${value}&`
+    )
+    : "";
+    const apiUrl = `${baseUrl}${endPoint}?${populate?.map(p => `populate=${p}&`).join('')}${filter}`;
     try {
         const apiCall = await fetch(apiUrl, {
             method: 'PUT',

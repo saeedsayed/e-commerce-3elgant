@@ -17,39 +17,39 @@ const SliderRange = ({ rangeTo, handleRangePrice }: Props) => {
   const handleChangeMaxVal = (v: number) => {
     if (v <= currentMinVal + steps) {
       setCurrentMaxVal(currentMinVal + steps);
-      handleRangePrice([currentMinVal, currentMinVal + steps]);
     } else if (v > range[1]) {
       setCurrentMaxVal(range[1]);
     } else {
       setCurrentMaxVal(v);
-      handleRangePrice([currentMinVal, v]);
     }
   };
   const handleChangeMinVal = (v: number) => {
     if (v >= currentMaxVal - steps) {
       setCurrentMinVal(currentMaxVal - steps);
-      handleRangePrice([currentMaxVal - steps, currentMaxVal]);
     } else if (v < range[0]) {
       setCurrentMinVal(range[0]);
     } else {
       setCurrentMinVal(v);
-      handleRangePrice([v, currentMaxVal]);
     }
   };
 
   const handleReset = () => {
-    setCurrentMinVal(range[0]);
-    setCurrentMaxVal(range[1]);
-    handleRangePrice([range[0], range[1]]);
+    if (currentMinVal !== range[0] || currentMaxVal !== range[1]) {
+      setCurrentMinVal(range[0]);
+      setCurrentMaxVal(range[1]);
+      handleRangePrice([range[0], range[1]]);
+    }
+  };
+
+  const handleMouseUp = () => {
+    handleRangePrice([currentMinVal, currentMaxVal]);
   };
 
   useEffect(() => {
-    progressBar.current.style.right = `${
-      100 - ((currentMaxVal + range[0]) / range[1]) * 100
-    }%`;
-    progressBar.current.style.left = `${
-      ((currentMinVal - range[0]) / range[1]) * 100
-    }%`;
+    progressBar.current.style.right = `${100 - ((currentMaxVal + range[0]) / range[1]) * 100
+      }%`;
+    progressBar.current.style.left = `${((currentMinVal - range[0]) / range[1]) * 100
+      }%`;
   }, [currentMinVal, currentMaxVal]);
 
   return (
@@ -85,7 +85,7 @@ const SliderRange = ({ rangeTo, handleRangePrice }: Props) => {
             className="w-16 focus:outline-none"
             value={currentMaxVal}
             onChange={(e) => handleChangeMaxVal(+e.target.value)}
-          />
+            />
         </label>
       </div>
 
@@ -93,7 +93,7 @@ const SliderRange = ({ rangeTo, handleRangePrice }: Props) => {
         <div
           ref={progressBar}
           className={`absolute z-10 h-full bg-badge left-0 right-full`}
-        />
+          />
         <input
           type="range"
           min={range[0]}
@@ -102,7 +102,8 @@ const SliderRange = ({ rangeTo, handleRangePrice }: Props) => {
           className={styles.minRangeInput}
           value={currentMinVal}
           onChange={(e) => handleChangeMinVal(+e.target.value)}
-        />
+          onMouseUp={handleMouseUp}
+          />
         <input
           type="range"
           min={range[0]}
@@ -111,6 +112,7 @@ const SliderRange = ({ rangeTo, handleRangePrice }: Props) => {
           className={styles.maxRangeInput}
           value={currentMaxVal}
           onChange={(e) => handleChangeMaxVal(+e.target.value)}
+          onMouseUp={handleMouseUp}
         />
       </div>
     </div>

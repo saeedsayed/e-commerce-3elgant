@@ -3,7 +3,7 @@ import HeroSlide from "./HeroSlide";
 
 const HeroSection = () => {
   return (
-    <div className="container sm:px-0 px-8">
+    <div className="container">
       <HeroSlide />
       <div className="flex flex-col md:flex-row gap-y-4 items-center mt-8 mb-10">
         <h2 className="text-[40px] lg:text-5xl xl:text-7xl font-medium flex-1">

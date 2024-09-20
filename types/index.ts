@@ -10,31 +10,21 @@ export interface IProduct {
         thumbnail: Thumbnail;
         price: number;
         sale: number;
-        createdAt: Date;
-        updateAt: Date;
+        createdAt: string;
+        updateAt: string;
         description: string;
         stock: number;
         review: Reviews[];
     }
 }
 
-
-export interface IArticle {
-    id: number;
-    attributes: {
-        title: string;
-        description: string;
-        thumbnail: Thumbnail;
-    }
-}
-
 export interface ICategory {
     id: number;
     attributes: {
-        name:        string;
-        createdAt:   Date;
-        updatedAt:   Date;
-        publishedAt: Date;
-        thumbnail:   Thumbnail;
+        name: string;
+        createdAt: string;
+        updatedAt: string;
+        publishedAt: string;
+        thumbnail: Thumbnail;
     }
 }

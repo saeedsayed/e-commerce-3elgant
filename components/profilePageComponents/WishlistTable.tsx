@@ -4,12 +4,13 @@ import { Button } from "@/components/common";
 import { IoClose } from "react-icons/io5";
 import { discountCalc } from "@/lib/discountCalc";
 import Link from "next/link";
-import { useShopContext } from "@/context/ShopContext";
 import { SkeletonLoading } from "../common";
+import { useWishlistContext } from "@/context/WishlistContext";
+import { useCartContext } from "@/context/CartContext";
 
 const WishlistTable = () => {
-  const { handleWishlist, wishlist, wishlistStatus, addToCart } =
-    useShopContext();
+  const { handleWishlist, wishlist, wishlistStatus } = useWishlistContext();
+  const { addToCart } = useCartContext()
   return (
     <>
       {wishlistStatus === "loading" && <SkeletonLoading />}

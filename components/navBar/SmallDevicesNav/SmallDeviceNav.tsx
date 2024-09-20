@@ -7,12 +7,12 @@ import { FaBars } from "react-icons/fa";
 import NavLogo from "../NavLogo";
 import SideMenu from "./SideMenu";
 import FlyoutCart from "../../flyoutCart/FlyoutCart";
-import { useShopContext } from "@/context/ShopContext";
+import { useCartContext } from "@/context/CartContext";
 
 const SmallDeviceNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showFlyout, setShowFlyout] = useState(false);
-  const {cart} = useShopContext()
+  const { cart } = useCartContext()
   const cartItemCount = cart.length
   const handleShowMenu = () => {
     setShowMenu((p) => !p);

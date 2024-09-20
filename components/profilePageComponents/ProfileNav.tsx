@@ -1,19 +1,18 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { IoCameraOutline } from "react-icons/io5";
 import { PROFILE_LINKS } from "@/constants/index";
 import Image from "next/image";
 import { Button } from "../common";
 import { signOut } from "next-auth/react";
-import type { User } from "next-auth";
+import ChangeAvatarButton from "./ChangeAvatarButton";
 
 type Props = {
-  user: User;
+  user: any;
 };
 
 
-const ProfileNav = ({user}: Props) => {
+const ProfileNav = ({ user }: Props) => {
   const currentPath = usePathname();
   const router = useRouter();
   return (
@@ -26,11 +25,9 @@ const ProfileNav = ({user}: Props) => {
             fill
             className="rounded-full"
           />
-          <button>
-            <IoCameraOutline className="absolute top-14 left-12 w-8 h-8 p-1 rounded-full bg-black text-white border-2" />
-          </button>
+          <ChangeAvatarButton user={user} />
         </div>
-        <h2 className="text-xl font-semibold">{user?.name}</h2>
+        <h2 className="text-xl font-semibold">{user?.userName}</h2>
       </div>
       <nav className="hidden sm:block">
         <ul className="flex flex-col gap-3 w-56">
@@ -38,11 +35,10 @@ const ProfileNav = ({user}: Props) => {
             <li key={link.name}>
               <Link
                 href={link.path}
-                className={`${
-                  currentPath === link.path
-                    ? "text-text border-b border-b-black"
-                    : "text-sub-text"
-                } py-2 block`}
+                className={`${currentPath === link.path
+                  ? "text-text border-b border-b-black"
+                  : "text-sub-text"
+                  } py-2 block`}
               >
                 {link.name}
               </Link>

@@ -8,9 +8,9 @@ export interface PurpleAttributes {
     description: string;
     price: number;
     sale: number;
-    createdAt: Date;
-    updatedAt: Date;
-    publishedAt: Date;
+    createdAt: string;
+    upstringdAt: string;
+    publishedAt: string;
     stock: number;
     review: Reviews[];
     thumbnail: Thumbnail;
@@ -40,9 +40,9 @@ export interface AccountAttributes {
     firstname:   string;
     lastname:    string;
     avatar:      string;
-    createdAt:   Date;
-    updatedAt:   Date;
-    publishedAt: Date;
+    createdAt:   string;
+    upstringdAt:   string;
+    publishedAt: string;
 }
 
 export interface Categories {
@@ -56,9 +56,9 @@ export interface Datum {
 
 export interface FluffyAttributes {
     name?: string;
-    createdAt: Date;
-    updatedAt: Date;
-    publishedAt: Date;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
     comment?: string;
 }
 
@@ -92,8 +92,8 @@ export interface TentacledAttributes {
     previewURL: null;
     provider: string;
     providerMetadata: null;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface Formats {

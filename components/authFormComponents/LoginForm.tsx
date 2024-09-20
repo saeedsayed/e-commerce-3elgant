@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
-import { Button } from "../common";
+import { Button, Spinner } from "../common";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import ButtonProvider from "./ButtonProvider";
+import { login } from "@/lib/actions";
+import { loginFormSchema } from "@/utils/schemes";
 
 type formFields = {
   email: string;
@@ -14,21 +15,32 @@ type formFields = {
   rememberMe?: boolean;
 };
 
-const schema = Yup.object().shape({
-  email: Yup.string().email().required(),
-  password: Yup.string().required(),
-  rememberMe: Yup.boolean(),
-});
-
 const LoginForm = () => {
+  const [error, setError] = useState<string>("");
+  const [isLOggingIn, setLoggingIn] = useState<boolean>(false)
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(loginFormSchema) });
 
-  const onSubmit = (data: formFields) => {
-    console.log(data);
+  const onSubmit = async (data: formFields) => {
+    setLoggingIn(true)
+    setError("")
+    try {
+      const { email, password } = data
+      const res = await login(email, password);
+      if (res === "success") {
+        window.location.reload()
+      }
+      if (res === "Invalid credentials") {
+        throw new Error("password or email is incorrect")
+      }
+    } catch (err: any) {
+      setError(err.message.replace('Error: ', '') as string)
+    } finally {
+      setLoggingIn(false)
+    }
   };
 
   return (
@@ -71,7 +83,8 @@ const LoginForm = () => {
           </label>
           <p className="font-bold">Forgot Password?</p>
         </div>
-        <Button className="w-full mt-6">Sign in</Button>
+        {error && <p className="text-red-500 mt-2">{error}</p>}
+        <Button className="w-full mt-6 flex items-center justify-center gap-2">Sign in {isLOggingIn ? <Spinner size="5" /> : ''}</Button>
       </form>
       {/* <ButtonProvider provider="google" /> */}
     </>

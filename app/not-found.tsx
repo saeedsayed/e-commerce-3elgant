@@ -1,3 +1,4 @@
+'use client'
 import { Button } from "@/components/common";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +20,10 @@ const notFound = (props: Props) => {
                 Sorry, the page you are looking for doesn't exist.
               </p>
               <div className="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
-                <button className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg  gap-x-2 sm:w-auto hover:bg-gray-100">
+                <button onClick={() => {
+                  'use client'
+                  window.history.back()
+                }} className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg  gap-x-2 sm:w-auto hover:bg-gray-100">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -36,10 +40,11 @@ const notFound = (props: Props) => {
                   </svg>
                   <span>Go back</span>
                 </button>
-                <Button className="w-1/2 text-sm shrink-0 sm:w-auto">
-                  <link href="/" />
-                  Take me home
-                </Button>
+                <Link href="/">
+                  <Button className="w-1/2 text-sm shrink-0 sm:w-auto">
+                    Take me home
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="grid w-full max-w-6xl grid-cols-1 gap-8 mx-auto mt-8 sm:grid-cols-2 lg:grid-cols-3">

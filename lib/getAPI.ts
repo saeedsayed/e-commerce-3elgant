@@ -5,10 +5,11 @@ export const getData = async (
     endPoint: string,
     populate?: string[],
     filters?: {
-        filter: string;
+        field: string;
         operator: string;
-        value: string | null | undefined;
-    }[]
+        value: any;
+    }[],
+    pageSize?: number
 ): Promise<[string | null, any]> => {
     let error: string | null = null;
     let response: any[] = [];
@@ -16,12 +17,13 @@ export const getData = async (
     const populates = !!populate ? populate.map((p, i) => `populate=${p}&`) : "";
     const filter = !!filters
         ? filters.map(
-            ({ filter, operator, value }) =>
-                `filters${filter}[$${operator}]=${value}&`
+            ({ field, operator, value }) =>
+                `filters${field}[$${operator}]=${value}&`
         )
         : "";
+    const page_size = !!pageSize ? `pagination[pageSize]=${pageSize}&` : "";
     // construct api url with query params and remove commas
-    const apiUrl = `${baseUrl}${endPoint}?${populates}${filter}`.replaceAll(",", "");
+    const apiUrl = `${baseUrl}${endPoint}?${populates}${filter}${page_size}`.replaceAll(",", "");
     try {
         // fetch data from api url
         const apiCall = await fetch(apiUrl, {

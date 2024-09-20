@@ -9,15 +9,17 @@ const NavBar = () => {
   return (
     <>
       <OfferBar />
-      <div className="container">
-        <header className="hidden sm:block">
-          <div className="flex items-center justify-between py-4">
-            <NavLogo />
-            <NavLinks />
-            <NavIcons />
-          </div>
-        </header>
-        <SmallDeviceNav />
+      <div className="sticky top-0 z-40 bg-white">
+        <div className="container">
+          <header className="hidden sm:block">
+            <div className="flex items-center justify-between py-4">
+              <NavLogo />
+              <NavLinks />
+              <NavIcons />
+            </div>
+          </header>
+          <SmallDeviceNav />
+        </div>
       </div>
     </>
   );

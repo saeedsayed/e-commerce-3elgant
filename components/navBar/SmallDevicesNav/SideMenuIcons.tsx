@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { BsPerson } from "react-icons/bs";
 import Link from "next/link";
 import { IconType } from "react-icons";
+import { useCartContext } from "@/context/CartContext";
+import { useWishlistContext } from "@/context/WishlistContext";
 
 type ItemProps = {
   text: string;
@@ -21,10 +23,12 @@ type Props = {
 
 const SideMenuIcons = ({handleClose}: Props) => {
   const session = useSession();
+  const {cart}=useCartContext()
+  const {wishlist}=useWishlistContext()
   return (
     <div className="flex flex-col gap-2 text-sub-text" onClick={handleClose}>
-      <Item text="Cart" icon={PiShoppingBagLight} path="/cart" label={2} />
-      <Item text="Wishlist" icon={CiHeart} path="/wishlist" label={2} />
+      <Item text="Cart" icon={PiShoppingBagLight} path="/cart" label={cart.length} />
+      <Item text="Wishlist" icon={CiHeart} path="/profile/wishlist" label={wishlist.length} />
       {session.status === "authenticated" && (
         <Item text="Profile" icon={BsPerson} path="/profile" />
       )}

@@ -1,10 +1,10 @@
-import { IArticle } from "@/types";
 import Image from "next/image";
 import React from "react";
 import ArrowLink from "./ArrowLink";
+import { Article } from "@/types/article";
 
 type Props = {
-  data: IArticle;
+  data: Article;
 };
 
 const ArticleCard = ({ data }: Props) => {
@@ -20,7 +20,7 @@ const ArticleCard = ({ data }: Props) => {
       </div>
       <div>
         <h3 className="text-xl font-medium mt-6 mb-2">{article.title}</h3>
-        <ArrowLink href={`articles/${data.id}`}>Read Article</ArrowLink>
+        <ArrowLink href={`/blog/${data.id}`}>Read Article</ArrowLink>
       </div>
     </div>
   );

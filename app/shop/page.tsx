@@ -36,17 +36,17 @@ const page = () => {
         // filters
         [
           {
-            filter: "[price]",
+            field: "[price]",
             operator: "between",
             value: rangePrice[0].toString(),
           },
           {
-            filter: "[price]",
+            field: "[price]",
             operator: "between",
             value: rangePrice[1].toString(),
           },
           {
-            filter: `${!searchParamsCategory ? `\\` : ""}[categories][name]`,
+            field: `${!searchParamsCategory ? `\\` : ""}[categories][name]`,
             operator: "eqi",
             value: searchParamsCategory,
           },

@@ -14,7 +14,7 @@ const Flyout = ({ position, isOpen, handleClose, children }:IFlyoutProps) => {
 
   return (
     <div
-      className={`w-full h-screen bg-black bg-opacity-70 fixed  z-50 inset-0
+      className={`w-full h-screen bg-black bg-opacity-70 fixed z-40 inset-0
             transition-all duration-200 ${
               isOpen ? "opacity-100 visible" : "opacity-0 invisible"
             }`} /* background black overlay */

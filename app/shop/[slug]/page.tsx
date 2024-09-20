@@ -1,15 +1,17 @@
+import { ArrowLink } from "@/components/common";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import ColorOptions from "@/components/shopPageComponents/product details/ColorOptions";
 import ProductAction from "@/components/shopPageComponents/product details/ProductAction";
 import ProductDetailsSkeleton from "@/components/shopPageComponents/product details/ProductDetailsSkeleton";
 import ProductImagesSlide from "@/components/shopPageComponents/product details/ProductImagesSlide";
+import RelatedProducts from "@/components/shopPageComponents/product details/RelatedProducts";
 import { calcStarRate } from "@/lib/calcStarRate";
 import { discountCalc } from "@/lib/discountCalc";
 import { getData } from "@/lib/getAPI";
-import { IProductDetails } from "@/types";
+import { IProduct, IProductDetails } from "@/types";
 import Link from "next/link";
 import React, { Suspense } from "react";
 import { FaStar } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
 
 type Props = {
   params: {
@@ -23,11 +25,17 @@ const page = async ({ params }: Props) => {
     `products/${params.slug}`,
     ["thumbnail", "categories", "review.reviews.accounts", "colors.example"]
   );
+  const [err, relatedProducts]: [string | null, IProduct[]] = await getData(
+    "Products",
+    ["*"],
+    [
+      { field: "[categories][name]", operator: "eqi", value: product?.attributes?.categories?.data?.[0]?.attributes?.name }
+    ]);
   const paths = [
     { name: "Home", path: "/" },
     { name: "Shop", path: "/shop" },
     {
-      name: product.attributes?.categories?.data[0]?.attributes?.name,
+      name: product.attributes?.categories?.data[0]?.attributes?.name as string,
       path: `/shop?category=${product.attributes?.categories?.data[0]?.attributes?.name}`,
     },
     { name: product.attributes?.name, path: `/shop/${slug}` },
@@ -36,21 +44,7 @@ const page = async ({ params }: Props) => {
     <Suspense fallback={<ProductDetailsSkeleton />}>
       <div className="container">
         {/* breadcrumb */}
-        <nav>
-          <ul className="flex flex-wrap items-center gap-1.5 py-4 break-words text-sm sm:gap-2.5 text-sub-text">
-            {paths.map((path, index) => (
-              <li className="inline-flex items-center gap-1.5" key={path.name}>
-                <Link
-                  className="transition-colors hover:text-text"
-                  href={path.path}
-                >
-                  {path.name}
-                </Link>
-                {index !== paths.length - 1 && <IoIosArrowForward />}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <Breadcrumbs paths={paths} />
         <div className="flex gap-16 flex-col md:flex-row pb-6">
           <div className="w-full md:w-1/2 lg:w-2/5">
             {/* images review */}
@@ -129,6 +123,8 @@ const page = async ({ params }: Props) => {
             </div>
           </div>
         </div>
+        {/* related products section */}
+        <RelatedProducts data={relatedProducts} />
       </div>
     </Suspense>
   );

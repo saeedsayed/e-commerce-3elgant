@@ -10,17 +10,18 @@ export const addToCartHandler = async (
     color: string,
     oldCart: ProductElement[],
     status: string
-): Promise<ProductElement[]> => {
+): Promise<{ newCartData: ProductElement[], newCartStatus: "done" | "empty" }> => {
     // check if user is logged in
     if (status === "unauthenticated") {
         toast.error("Please login first");
-        return oldCart;
+        return { newCartData: oldCart, newCartStatus: "empty" };
     }
     if (status === "loading") {
         toast.error("Please wait...");
-        return oldCart;
+        return { newCartData: oldCart, newCartStatus: "empty" };
     }
-    const toastId = toast.loading("Adding to cart...");
+    const toastId = toast.loading("Adding to cart...", { duration: 30000 });
+    document.body.style.cursor = "wait";
     const isExist = oldCart?.find((item) => item?.product.data.id === productId);
     let newCart: {
         color: string;
@@ -54,7 +55,6 @@ export const addToCartHandler = async (
             })
             .concat({ color, count: quantity, product: productId });
     }
-    // toast.promise()
     const [_, data]: [string | null, ICart] = await putApi(
         `carts/${cartId}`,
         {
@@ -69,16 +69,19 @@ export const addToCartHandler = async (
     )?.product.data.attributes.name as string;
     toast.remove(toastId);
     toast.success(`Added ${quantity} ${productName} to cart`);
+    document.body.style.cursor = "auto";
     const newCartData: ProductElement[] = data.attributes.product;
-    return newCartData;
+    const newCartStatus = newCartData.length > 0 ? "done" : "empty";
+    return { newCartData, newCartStatus };
 };
 
 export const removeFromCartHandler = async (
     cartId: number,
     productId: number,
     oldCart: ProductElement[]
-) => {
-    const toastId = toast.loading("Removing from cart...");
+): Promise<{ newCartData: ProductElement[], newCartStatus: "done" | "empty" }> => {
+    const toastId = toast.loading("Removing from cart...", { duration: 30000 });
+    document.body.style.cursor = "wait";
     let productName: string = oldCart.find(
         (item) => item.product.data.id === productId
     )?.product.data.attributes.name as string;
@@ -94,6 +97,28 @@ export const removeFromCartHandler = async (
     );
     toast.remove(toastId);
     toast.success(`Removed ${productName} from cart`);
+    document.body.style.cursor = "auto";
     const newCartData: ProductElement[] = data?.attributes?.product;
-    return newCartData;
+    const newCartStatus = newCartData.length > 0 ? "done" : "empty";
+    return { newCartData, newCartStatus };
+};
+// make cart empty
+export const emptyTheCart = async (
+    cartId: number,
+): Promise<{ newCartData: ProductElement[], newCartStatus: "done" | "empty" }> => {
+    const toastId = toast.loading("Removing from cart...", { duration: 30000 });
+    const [_, data]: [string | null, ICart] = await putApi(
+        `carts/${cartId}`,
+        {
+            data: {
+                product: [],
+            },
+        },
+        ["product.product.thumbnail"]
+    );
+    toast.remove(toastId);
+    toast.success(`Removed all products from cart`);
+    const newCartData: ProductElement[] = data?.attributes?.product;
+    const newCartStatus = newCartData.length > 0 ? "done" : "empty";
+    return { newCartData, newCartStatus };
 };

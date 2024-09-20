@@ -6,3 +6,5 @@ export {default as ProfileNav} from "./ProfileNav"
 export {default as SmallDevicesWishlistTable} from "./SmallDevicesWishlistTable"
 export {default as WishlistItem} from "./WishlistItem"
 export {default as WishlistTable} from "./WishlistTable"
+// account detail page components
+export {default as AccountDetailsForm} from "./accountDetailPage/AccountDetailsForm"

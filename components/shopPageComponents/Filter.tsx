@@ -6,6 +6,7 @@ import { VscSettings } from "react-icons/vsc";
 import SliderRange from "./SliderRange";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type Props = {
   setRangePrice: React.Dispatch<React.SetStateAction<number[]>>;
@@ -18,6 +19,7 @@ const Filter = ({
 }: Props) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const searchParams = useSearchParams().get('category')
+  const router = useRouter()
   useEffect(() => {
     (async () => {
       const [error, data]: [string | null, ICategory[]] = await getData(
@@ -49,10 +51,10 @@ const Filter = ({
               <li>
                 <Link
                   className={`text-sub-text font-semibold ${!searchParams
-                      ? "text-text border-b border-b-black"
-                      : ""
+                    ? "text-text border-b border-b-black"
+                    : ""
                     }`}
-                    href={"/shop"}
+                  href={"/shop"}
                 >
                   All
                 </Link>
@@ -61,10 +63,10 @@ const Filter = ({
                 <li key={category.id}>
                   <Link
                     className={`text-sub-text font-semibold ${searchParams === category.attributes.name
-                        ? "text-text border-b border-b-black"
-                        : ""
+                      ? "text-text border-b border-b-black"
+                      : ""
                       }`}
-                      href={`/shop?category=${category.attributes.name}`}
+                    href={`/shop?category=${category.attributes.name}`}
                   >
                     {category.attributes.name}
                   </Link>

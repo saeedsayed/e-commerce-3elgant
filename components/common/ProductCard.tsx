@@ -5,15 +5,17 @@ import Button from "./Button";
 import { FaRegHeart } from "react-icons/fa";
 import { discountCalc } from "@/lib/discountCalc";
 import Link from "next/link";
-import { useShopContext } from "@/context/ShopContext";
 import { calcStarRate } from "@/lib/calcStarRate";
+import { useWishlistContext } from "@/context/WishlistContext";
+import { useCartContext } from "@/context/CartContext";
 type Props = {
   data: IProduct;
 };
 
 const ProductCard = ({ data }: Props) => {
   const { attributes: product } = data;
-  const { wishlist, handleWishlist, addToCart} = useShopContext();
+  const {wishlist,handleWishlist,wishlistStatus}= useWishlistContext()
+  const {addToCart, cartStatus}=useCartContext()
   const isFavorite = wishlist.find((item) => item.id === data.id);
   return (
     <Link
@@ -37,7 +39,7 @@ const ProductCard = ({ data }: Props) => {
           <button
             className={`
               ${isFavorite ? "text-red-500" : "text-text"}
-             cursor-pointer p-2 rounded-full aspect-square  shadow opacity-0 transition-all`}
+             cursor-pointer p-2 rounded-full aspect-square  shadow opacity-0 transition-all ${wishlistStatus === "loading" && "cursor-not-allowed"}`}
             onClick={(e) => {
               e.preventDefault();
               handleWishlist(data.id);
@@ -56,10 +58,12 @@ const ProductCard = ({ data }: Props) => {
           />
         </div>
         <Button
-          className="w-full mt-1 sm:mt-4 opacity-0 transition-all text-xs sm:text-lg"
+          className={`w-full mt-1 sm:mt-4 opacity-0 transition-all text-xs sm:text-lg ${
+            cartStatus === "loading" && "cursor-not-allowed"
+          }`}
           onClick={(e) => {
             e.preventDefault();
-            addToCart(data.id, 1, 'any');
+            addToCart(data.id, 1, "any");
           }}
         >
           Add to cart
