@@ -1,12 +1,11 @@
 import {
   HeroSection,
-  // NewArrivals,
+  NewArrivals,
   OurFeatures,
   Banner,
   Articles,
   Categories,
 } from "@/components/homePageComponents";
-import NewArrivals from "@/components/homePageComponents/newArrivals/NewArrivals";
 
 const Home = () => {
   return (
