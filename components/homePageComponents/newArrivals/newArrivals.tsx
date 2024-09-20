@@ -1,5 +1,5 @@
 import { getData } from "@/lib/getAPI";
-// import NewArrivalsSlide from "./NewArrivalsSlide";
+import NewArrivalsSlide from "./NewArrivalsSlide";
 import { ArrowLink } from "@/components/common";
 import { IProduct } from "@/types";
 
@@ -16,7 +16,7 @@ const NewArrivals = async () => {
         </h2>
         <ArrowLink href="shop">More Products</ArrowLink>
       </div>
-      {/* <NewArrivalsSlide data={response} /> */}
+      <NewArrivalsSlide data={response} />
     </div>
   );
 };
