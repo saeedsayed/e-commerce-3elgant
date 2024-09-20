@@ -11,7 +11,7 @@ type Props = {
   data: IProduct[]
 }
 
-const NewArrivalsSlide = ({ data }: Props) => {
+const BestSellerSlide = ({ data }: Props) => {
   return (
     <div>
       <Swiper
@@ -32,4 +32,4 @@ const NewArrivalsSlide = ({ data }: Props) => {
   );
 };
 
-export default NewArrivalsSlide;
+export default BestSellerSlide;

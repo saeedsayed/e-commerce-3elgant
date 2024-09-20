@@ -1,10 +1,10 @@
 import {
   HeroSection,
-  NewArrivals,
   OurFeatures,
   Banner,
   Articles,
   Categories,
+  BestSeller,
 } from "@/components/homePageComponents";
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
     <div>
       <HeroSection />
       <Categories />
-      <NewArrivals />
+      <BestSeller />
       <OurFeatures />
       <Banner />
       <Articles />

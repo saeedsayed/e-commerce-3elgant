@@ -1,6 +1,6 @@
 export { default as HeroSection } from './heroSection/HeroSection'
-export { default as NewArrivals } from './newArrivals/NewArrivals'
 export { default as OurFeatures } from './ourFeatures/OurFeatures'
 export { default as Banner } from './banner/Banner'
 export { default as Articles } from './articles/Articles'
 export { default as Categories } from './categories/Categories'
+export { default as BestSeller } from './bestSeller/BestSeller'
