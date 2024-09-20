@@ -52,7 +52,7 @@ const CheckoutForm = () => {
             elements,
             confirmParams: {
                 // return to checkout page after payment is successful
-                return_url: `http://localhost:3000/cart/checkout/complete?client_id=${clientSecret}`,
+                return_url: `${process.env.NEXT_PUBLIC_APP_URL}/cart/checkout/complete?client_id=${clientSecret}`,
             },
         });
         if (error) {
