@@ -1,10 +1,10 @@
 import { getData } from "@/lib/getAPI";
 import NewArrivalsSlide from "./NewArrivalsSlide";
 import { ArrowLink } from "@/components/common";
-import { IProduct } from "@/types";
+// import { IProduct } from "@/types";
 
 const NewArrivals = async () => {
-  const [error, response]: [string | null, IProduct[]] = await getData("products", [
+  const [error, response]: [string | null, any[]] = await getData("products", [
     "thumbnail",
     "review",
   ]);
