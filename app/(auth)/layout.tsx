@@ -1,9 +1,9 @@
-import { auth } from "@/auth";
+// import { auth } from "@/auth";
 import { ButtonProvider } from "@/components/authFormComponents";
 import { Logo } from "@/components/common";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -11,10 +11,10 @@ type Props = {
 };
 
 const layout = async ({ children }: Props) => {
-  const session = await auth();
-  if (!!session?.user) {
-    redirect("/");
-  }
+  // const session = await auth();
+  // if (!!session?.user) {
+  //   redirect("/");
+  // }
   return (
     <div className="md:h-screen md:overflow-hidden absolute inset-0 z-50 bg-white">
       <div className="gap-y-6 flex flex-col sm:flex-row overflow-auto h-full">

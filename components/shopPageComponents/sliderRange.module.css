@@ -6,7 +6,7 @@
     background:none;
     -webkit-appearance: none;
     pointer-events: none;
-    z-index: 99;
+    z-index: 30;
 }
 .maxRangeInput::-webkit-slider-thumb,
 .minRangeInput::-webkit-slider-thumb{

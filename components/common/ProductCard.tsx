@@ -24,7 +24,7 @@ const ProductCard = ({ data }: Props) => {
     >
       <div className="bg-primary p-2 sm:p-4">
         <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center sm:flex-col">
+          <div className="flex gap-1 md:gap-2 items-center sm:flex-col">
             <div className="bg-white text-sm sm:text-base px-1 sm:px-4 rounded-md mb-1 sm:mb-2 font-bold">
               NEW
             </div>
@@ -39,7 +39,7 @@ const ProductCard = ({ data }: Props) => {
           <button
             className={`
               ${isFavorite ? "text-red-500" : "text-text"}
-             cursor-pointer p-2 rounded-full aspect-square  shadow opacity-0 transition-all ${wishlistStatus === "loading" && "cursor-not-allowed"}`}
+             cursor-pointer p-2 rounded-full aspect-square  shadow md:opacity-0 transition-all ${wishlistStatus === "loading" && "cursor-not-allowed"}`}
             onClick={(e) => {
               e.preventDefault();
               handleWishlist(data.id);
@@ -58,7 +58,7 @@ const ProductCard = ({ data }: Props) => {
           />
         </div>
         <Button
-          className={`w-full mt-1 sm:mt-4 opacity-0 transition-all text-xs sm:text-lg ${
+          className={`w-full mt-1 sm:mt-4 md:opacity-0 transition-all text-xs sm:text-lg ${
             cartStatus === "loading" && "cursor-not-allowed"
           }`}
           onClick={(e) => {

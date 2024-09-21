@@ -20,7 +20,7 @@ const FlyoutCart = ({ isOpen, handleClose }: Props) => {
         <h4 className="text-[28px] font-medium mb-4">Cart</h4>
         <button className="w-6 h-6 flex items-center justify-center text-3xl" onClick={handleClose}><IoClose /></button>
       </div>
-      {cartStatus === "empty" && <EmptyCart />}
+      {cartStatus === "empty" && <div onClick={handleClose}><EmptyCart /></div> }
       {cart.length > 0 && (
         <div className="flex flex-col justify-between min-h-[90%]">
           <ul

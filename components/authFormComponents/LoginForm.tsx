@@ -81,9 +81,9 @@ const LoginForm = () => {
             />
             Remember me
           </label>
-          <p className="font-bold">Forgot Password?</p>
+          <p className="font-bold cursor-not-allowed">Forgot Password?</p>
         </div>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
+        {error && <p className="text-red-500 mt-2 select-none">{error}</p>}
         <Button className="w-full mt-6 flex items-center justify-center gap-2">Sign in {isLOggingIn ? <Spinner size="5" /> : ''}</Button>
       </form>
       {/* <ButtonProvider provider="google" /> */}

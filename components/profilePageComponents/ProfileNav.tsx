@@ -44,14 +44,6 @@ const ProfileNav = ({ user }: Props) => {
               </Link>
             </li>
           ))}
-          <li>
-            <Button
-              className="text-sub-text py-2 w-full"
-              onClick={() => signOut()}
-            >
-              Logout
-            </Button>
-          </li>
         </ul>
       </nav>
       {/* small devices nav */}
@@ -67,6 +59,12 @@ const ProfileNav = ({ user }: Props) => {
           </option>
         ))}
       </select>
+      <Button
+        className="text-sub-text py-2 w-full mt-2"
+        onClick={() => signOut()}
+      >
+        Logout
+      </Button>
     </div>
   );
 };
