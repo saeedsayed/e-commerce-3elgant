@@ -11,6 +11,7 @@ import {
 import { toast } from "react-hot-toast";
 import { Datum } from "@/types/wishlist";
 import { addOrRemoveFromWishlist } from "@/lib/addOrRemoveFromWishlist";
+import { useRouter } from "next/navigation";
 
 // types
 interface IWishlistContext {
@@ -34,12 +35,14 @@ const WishlistProvider = ({ children }: { readonly children: ReactNode }) => {
     >("loading");
     // get session client side
     const { data: session, status } = useSession();
+    const router = useRouter()
 
     // add or remove from wishlist
     const handleWishlist = async (id: number) => {
         // check if user is logged in
         if (status === "unauthenticated") {
             toast.error("Please login first");
+            router.push('/login')
             return;
         }
         if (status === "loading") {
@@ -63,7 +66,7 @@ const WishlistProvider = ({ children }: { readonly children: ReactNode }) => {
         setWishlistStatus(newWishlistStatus);
     };
 
-    // get wishlist and cart
+    // get wishlist first time
     useEffect(() => {
         if (status === "authenticated") {
             (async () => {
@@ -83,6 +86,9 @@ const WishlistProvider = ({ children }: { readonly children: ReactNode }) => {
                     console.log(err);
                 }
             })();
+        } else if (status === "unauthenticated") {
+            setWishlist([]);
+            setWishlistStatus("empty");
         }
     }, [status]);
 

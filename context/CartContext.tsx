@@ -13,6 +13,7 @@ import { ICart, ProductElement } from "@/types/cart";
 import { addToCartHandler, emptyTheCart, removeFromCartHandler } from "@/lib/handleCart";
 import { discountCalc } from "@/lib/discountCalc";
 import { Attributes as shippingMethod, ShippingMethods } from "@/types/shippingMethods";
+import { useRouter } from "next/navigation";
 
 // types
 interface ICartContext {
@@ -48,6 +49,7 @@ const CartContext = createContext<ICartContext>({
     totalCartPrice: { subTotal: 0, total: 0 },
 });
 
+// component
 const CartProvider = ({ children }: { readonly children: ReactNode }) => {
     // states
     const [cart, setCart] = useState<ProductElement[]>([]);
@@ -63,6 +65,7 @@ const CartProvider = ({ children }: { readonly children: ReactNode }) => {
     const [totalCartPrice, setTotalCartPrice] = useState<{ subTotal: number, total: number }>();
     // get session client side
     const { data: session, status } = useSession();
+    const router = useRouter()
 
     // add to cart function
     const addToCart = async (
@@ -70,6 +73,11 @@ const CartProvider = ({ children }: { readonly children: ReactNode }) => {
         quantity: number,
         color: string
     ) => {
+        if (status === "unauthenticated") {
+            toast.error("Please login first");
+            router.push('/login')
+            return;
+        }
         if (cartStatus === "loading" || cartStatus === "updating") {
             toast.error("Please wait...");
             return;
@@ -142,6 +150,17 @@ const CartProvider = ({ children }: { readonly children: ReactNode }) => {
                     cartData?.attributes?.product?.length > 0 ? "done" : "empty"
                 );
             })();
+        } else if (status === "unauthenticated") {
+            setCart([]);
+            setCartStatus("empty");
+            setShippingMethods([]);
+            setSelectedShippingMethod({
+                methodName: "Free shipping",
+                increases: 0,
+                typeIncrease: "increases",
+            });
+            setTotalCartPrice({ subTotal: 0, total: 0 });
+            return;
         }
     }, [status]);
 

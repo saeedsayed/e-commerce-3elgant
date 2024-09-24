@@ -5,8 +5,6 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
     const cookie = request.cookies.get('authjs.session-token')?.value || request.cookies.get('__Secure-authjs.session-token')?.value
     const { pathname, origin } = request.nextUrl
-    console.log('origin: ', origin)
-    console.log('pathname: ', pathname)
     if ((pathname === '/login' || pathname === '/register') && cookie) {
         return NextResponse.redirect(new URL('/', request.url))
     }
